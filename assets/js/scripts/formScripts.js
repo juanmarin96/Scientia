@@ -48,7 +48,9 @@ $(document).ready(function () {
         $("#totalVolume").val(total);
     })
 
-
+    $("#printBtn").click(function () {
+       window.print();
+    })
 
 
 

@@ -30,6 +30,11 @@ class Ajax{
         echo json_encode($response);
     }
 
+    public function getFormData($idform){
+        $response = formController::getFormDataController($idform);
+        echo json_encode($response);
+    }
+
 }
 
 if(isset($_POST['myData'])){
@@ -50,6 +55,11 @@ if(isset($_POST['idPoint'])){
 if(isset($_POST['preData'])){
     $a = new Ajax();
     $a ->getPreData($_POST['preData']);
+}
+
+if(isset($_POST["formData"])){
+    $a = new Ajax();
+    $a->getFormData($_POST["formData"]);
 }
 
 if(isset($_POST['getProjects'])){

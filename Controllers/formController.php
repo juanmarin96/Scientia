@@ -30,6 +30,11 @@
             return $response;
         }
 
+        public function getFormDataController($idform){
+            $response = OperationData::getFormDataModel($idform);
+            return $response;
+        }
+
     }
 
 

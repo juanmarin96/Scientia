@@ -71,6 +71,9 @@ class OperationData extends Conexion
                     if($stmt3->execute()){
                         $response = $response&true;
                     }else{
+                        $stmt5 = Conexion::conectar()->prepare("DELETE FROM `form` WHERE id = :idForm");
+                        $stmt5->bindParam(":idForm", $id, PDO::PARAM_INT);
+                        $stmt5->execute();
                         return false;
                     }
                 }
@@ -91,6 +94,9 @@ class OperationData extends Conexion
                     if($stmt4->execute()){
                         $response = $response&true;
                     }else{
+                        $stmt6 = Conexion::conectar()->prepare("DELETE FROM `form` WHERE id = :idForm");
+                        $stmt6->bindParam(":idForm", $id, PDO::PARAM_INT);
+                        $stmt6->execute();
                         return false;
                     }
                 }
@@ -117,9 +123,10 @@ class OperationData extends Conexion
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getFormsPointModel($idPoint){
-        $stmt = Conexion::conectar()->prepare("SELECT `id`, `site_name`, `site_location`, `well_nro`, `sample_id`, `date`, `well_diameter`, `tubing_diameter`, `well_scr_depth_inf`, `well_scr_depth_sup`, `static_depth_water`,`well_capacity` ,`purge_pump_type`, `well_volume_purge`,`pump_volume`,`tubing_capacity`,`tubing_length`,`flow_cell`,`equipment_volume_purge`, `initial_pump_depth`, `final_pump_depth`, `purging_init`, `purging_end`, `total_volume_purged`, `sampled_by`, `sample_signature`, `sampling_init`, `sampling_end`, `pump_depth_well`, `tubing_material`, `field_filtered`, `filter_size`, `filtration_equip_type`, `decontamination_pump`, `decontamination_tubing`, `duplicate`, `remarks` FROM `form` WHERE point_id = :pointId");
-        $stmt->bindParam(":pointId",$idPoint,PDO::PARAM_INT);
+
+    public function getFormDataModel($idForm){
+        $stmt = Conexion::conectar()->prepare("SELECT `id`, `site_name`, `site_location`, `well_nro`, `sample_id`, `date`, `well_diameter`, `tubing_diameter`, `well_scr_depth_inf`, `well_scr_depth_sup`, `static_depth_water`, `purge_pump_type`, `well_capacity`, `well_volume_purge`, `pump_volume`, `tubing_capacity`, `tubing_length`, `flow_cell`, `equipment_volume_purge`, `initial_pump_depth`, `final_pump_depth`, `purging_init`, `purging_end`, `total_volume_purged`, `sampled_by`, `sample_signature`, `sampling_init`, `sampling_end`, `pump_depth_well`, `tubing_material`, `field_filtered`, `filter_size`, `filtration_equip_type`, `decontamination_pump`, `decontamination_tubing`, `duplicate`, `remarks`, `point_id` FROM `form` WHERE id = :idForm");
+        $stmt->bindParam(":idForm",$idForm,PDO::PARAM_INT);
         $stmt->execute();
         $array =  $stmt->fetchAll(PDO::FETCH_ASSOC);
         for($i=0; $i<count($array);$i++){
@@ -135,6 +142,14 @@ class OperationData extends Conexion
             $array[$i]["samplings"] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
         }
+        return $array;
+}
+
+    public function getFormsPointModel($idPoint){
+        $stmt = Conexion::conectar()->prepare("SELECT `id`,`date`,`purging_init` FROM `form` WHERE point_id = :pointId");
+        $stmt->bindParam(":pointId",$idPoint,PDO::PARAM_INT);
+        $stmt->execute();
+        $array =  $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $array;
     }
 

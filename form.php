@@ -18,7 +18,7 @@ if (!isset($_SESSION["user"])) {
     <script src="assets/js/scripts/formScripts.js"></script>
 </head>
 <body>
-    <div class="row">
+    <div id="container-all" class="row">
         <form id="formData">
             <input type="hidden" id="idPoint" value="<?php echo $_GET["idPoint"]?>">
             <!--CABECERA DE DATOS-->
@@ -364,7 +364,7 @@ if (!isset($_SESSION["user"])) {
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div  class="btn btn-lg btn-default" id="saveData">SAVE</div>
-                    <div  class="btn btn-lg btn-default">PRINT</div>
+                    <div id="printBtn" class="btn btn-lg btn-default">PRINT/DOWNLOAD</div>
                 </div>
             </div>
         </form>
