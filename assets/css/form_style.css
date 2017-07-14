@@ -1,0 +1,28 @@
+.table-style{
+    width:100%;
+}
+
+input {
+    width: 80%;
+}
+
+.purgingData td input, .samplingData td input{
+    width:100% !important;
+}
+
+td{
+    text-align: center;
+}
+
+input[type=time]{
+    width:100px !important;
+}
+
+.invalid-input{
+    border-color: red;
+}
+
+tr th{
+    text-align: center;
+}
+
