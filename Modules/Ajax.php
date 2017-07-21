@@ -66,4 +66,5 @@ if(isset($_POST['getProjects'])){
     $a = new Ajax();
     $a ->getProjects();
 }
+
 ?>

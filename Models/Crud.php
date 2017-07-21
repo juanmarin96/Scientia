@@ -49,7 +49,7 @@ class OperationData extends Conexion
         $stmt->bindParam(":point", $data["point"], PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            $stmt2 = Conexion::conectar()->prepare("SELECT id FROM `form` ORDER By id LIMIT 1");
+            $stmt2 = Conexion::conectar()->prepare("SELECT id FROM `form` ORDER By id DESC LIMIT 1");
             if ($stmt2->execute()) {
                 $id = $stmt2->fetch();
                 $readings = $data['readings'];
@@ -136,10 +136,10 @@ class OperationData extends Conexion
             $stmt2->execute();
             $array[$i]["readings"] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-            $stmt2 = Conexion::conectar()->prepare("SELECT `id`, `sample_id`, `nro_container`, `material_code`, `volume`, `preservative_used`, `total_vol_added`, `final_ph`, `intended_analysis`, `sampling_equip_code`, `sample_pump_flow_rate`, `remarks_sampling` FROM `sampling` WHERE form_id = :formId");
-            $stmt2->bindParam("formId",$idForm,PDO::PARAM_INT);
-            $stmt2->execute();
-            $array[$i]["samplings"] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+            $stmt3 = Conexion::conectar()->prepare("SELECT `id`, `sample_id`, `nro_container`, `material_code`, `volume`, `preservative_used`, `total_vol_added`, `final_ph`, `intended_analysis`, `sampling_equip_code`, `sample_pump_flow_rate` FROM `sampling` WHERE form_id = :formId");
+            $stmt3->bindParam("formId",$idForm,PDO::PARAM_INT);
+            $stmt3->execute();
+            $array[$i]["samplings"] = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 
         }
         return $array;

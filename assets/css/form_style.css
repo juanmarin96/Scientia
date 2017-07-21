@@ -26,3 +26,7 @@ tr th{
     text-align: center;
 }
 
+.link{
+    cursor: pointer;
+}
+
