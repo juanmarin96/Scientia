@@ -131,12 +131,12 @@ class OperationData extends Conexion
         $array =  $stmt->fetchAll(PDO::FETCH_ASSOC);
         for($i=0; $i<count($array);$i++){
             $idForm = $array[$i]["id"];
-            $stmt2 = Conexion::conectar()->prepare("SELECT `id`,`time`, `volume_purged`, `cumul_volume_purged`, `purge_rate`,  `depth_water`, `ph`, `temperature`, `conductance`, `dissolved_oxygen`, `turbidity`, `color`, `odor` FROM `reading` WHERE form_id = :idForm");
+            $stmt2 = Conexion::conectar()->prepare("SELECT `time`, `volume_purged`, `cumul_volume_purged`, `purge_rate`,  `depth_water`, `ph`, `temperature`, `conductance`, `dissolved_oxygen`, `turbidity`, `color`, `odor` FROM `reading` WHERE form_id = :idForm");
             $stmt2->bindParam(":idForm",$idForm,PDO::PARAM_INT);
             $stmt2->execute();
             $array[$i]["readings"] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-            $stmt3 = Conexion::conectar()->prepare("SELECT `id`, `sample_id`, `nro_container`, `material_code`, `volume`, `preservative_used`, `total_vol_added`, `final_ph`, `intended_analysis`, `sampling_equip_code`, `sample_pump_flow_rate` FROM `sampling` WHERE form_id = :formId");
+            $stmt3 = Conexion::conectar()->prepare("SELECT `sample_id`, `nro_container`, `material_code`, `volume`, `preservative_used`, `total_vol_added`, `final_ph`, `intended_analysis`, `sampling_equip_code`, `sample_pump_flow_rate` FROM `sampling` WHERE form_id = :formId");
             $stmt3->bindParam("formId",$idForm,PDO::PARAM_INT);
             $stmt3->execute();
             $array[$i]["samplings"] = $stmt3->fetchAll(PDO::FETCH_ASSOC);

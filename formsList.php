@@ -37,7 +37,6 @@ if(!isset($_SESSION["user"])){
                 <div id="container-all" class="row">
                         <input type="hidden" id="idPoint" value="<?php echo $_GET["idPoint"]?>">
                         <!--CABECERA DE DATOS-->
-                        <a class="btn btn-default btn-lg" style="float: left;" href="formsList.php?id=<?php echo $_GET["idPoint"]?>">Come Back</a>
                         <h1 class="text-center">GROUNDWATER SAMPLING LOG</h1>
                         <table border="1" class="table-responsive table-style">
                             <tr>
@@ -218,11 +217,6 @@ if(!isset($_SESSION["user"])){
                                 </th>
                             </tr>
                         </table>
-                        <div style="text-align: right;">
-                            <a id="addRow" class="btn btn-default btn-xs">Add row</a>
-                            <input id="numberRows" type="number" style="width: 50px;" min="1" value="1">-
-                            <a id="removeRowP" class="btn btn-default btn-xs">Remove row</a>
-                        </div>
                         <p><span style="font-weight: bold">WELL CAPACITY (Gallons Per Foot):</span>   0.75” = 0.02;      1” = 0.04;      1.25” = 0.06;      2” = 0.16;      3” = 0.37;      4” = 0.65;      5” = 1.02;      6” = 1.47;      12” = 5.88
                         </p>
                         <p>
@@ -351,11 +345,6 @@ if(!isset($_SESSION["user"])){
                                 </th>
                             </tr>
                         </table>
-                        <div style="text-align: right;">
-                            <a id="addRowS" class="btn btn-default btn-xs">Add row</a>
-                            <input id="numberRowsSam" type="number" style="width: 50px;" min="1" value="1">-
-                            <a id="removeRowS" class="btn btn-default btn-xs">Remove row</a>
-                        </div>
                         <div>
                             <h6>REMARKS:</h6>
                             <textarea style="min-height: 80px;width: 100%;" id="remarks" name="remarks"></textarea>
@@ -378,8 +367,7 @@ if(!isset($_SESSION["user"])){
                         </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
