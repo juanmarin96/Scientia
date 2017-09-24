@@ -10,11 +10,28 @@ $(document).ready(function () {
         getFormData(id);
     })
 
+    $(document).on("click",".download",function () {
+        generatePdf()
+    })
+
     $('input').prop('readonly', true);
     $('textarea').prop('readonly', true);
 
 
 })
+
+function generatePdf(){
+    var html = document.getElementById("container-all").innerHTML;
+    $.ajax({
+        url: "pdfGenerator.php",
+        method: "POST",
+        cache: false,
+        data: {"html": html},
+        success: function (request) {
+
+        }
+    })
+}
 
 function getFormsPoint(idPoint) {
     $.ajax({
@@ -51,6 +68,7 @@ function showFormsList(data){
                 case 2:
                     var element = document.createElement("a");
                     element.innerHTML = "Download";
+                    element.setAttribute("class","download")
                     break;
                 default:
                     break;
